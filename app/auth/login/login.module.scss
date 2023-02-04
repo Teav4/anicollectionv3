@@ -1,0 +1,22 @@
+.loginForm {
+  @include center-of-screen;
+  width: 400px;
+  height: 500px;
+
+}
+
+.card {
+  padding: 1.5rem;
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+.inputField {
+  margin-bottom: 1rem;
+}
+
+.submitBtn {
+  max-width: 30%;
+}
