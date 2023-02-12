@@ -1,15 +1,21 @@
 'use client'
 
 import { Button } from '@fluentui/react-components'
-import { useContext } from 'react';
-import { AuthContext } from '@/contexts/Auth/AuthContext';
-import { useRouter } from 'next/navigation';
-import { useSignOut } from '@/hooks/useSignOut';
+import { useContext, useEffect } from 'react';
+import { AuthContext } from '@/contexts/Auth/AuthContext'
+import { useRouter } from 'next/navigation'
+import { useSignOut } from '@/hooks/useSignOut'
 
 export default function Home() {
-  const { loggedInUser } = useContext(AuthContext)
   const router = useRouter()
+  const { loggedInUser } = useContext(AuthContext)
   const logOut = useSignOut()
+  
+  useEffect(() => {
+    if (!loggedInUser.token) {
+      router.push('/auth/login')
+    }
+  }, [loggedInUser.token])
 
   if (loggedInUser.token) {
     return (
@@ -26,10 +32,9 @@ export default function Home() {
       </div>
     )
   } else {
-    router.push('/auth/login')
+    return (
+      <div>Not logged in! Redirect to login page ...</div>
+    )
   }
 
-  return (
-    <div>Not logged in! Redirect to login page ...</div>
-  )
 }

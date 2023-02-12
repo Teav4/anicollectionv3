@@ -14,8 +14,7 @@ export default function LoginPage() {
   const router = useRouter()
 
   useEffect(() => {
-    onGoogleSignIn()
-      .then(setGoogleLoginUrl)
+    onGoogleSignIn().then(setGoogleLoginUrl)
   }, [])
 
   return (
