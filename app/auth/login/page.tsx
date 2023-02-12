@@ -2,24 +2,21 @@
 
 import { Card, CardFooter, CardPreview } from '@fluentui/react-components/unstable';
 import { Button, Input, Label, Text, useId } from '@fluentui/react-components'
-import { useSession, signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import classes from './login.module.scss'
+import { useRouter } from 'next/navigation'
+import { onGoogleSignIn } from './onGoogleSignIn';
+import { useEffect, useState } from 'react';
 
 export default function LoginPage() {
-  const { data: session } = useSession()
-  const router = useRouter()
   const inputUsernameId = useId('input-username');
   const inputPasswordId = useId('input-password');
+  const [googleLoginUrl, setGoogleLoginUrl] = useState('')
+  const router = useRouter()
 
-  if (session) {
-    router.replace('/')
-
-    return (
-      <>
-      </>
-    )
-  }
+  useEffect(() => {
+    onGoogleSignIn()
+      .then(setGoogleLoginUrl)
+  }, [])
 
   return (
     <main className="container">
@@ -52,9 +49,8 @@ export default function LoginPage() {
               </Button>
               <Button 
                 appearance='primary'
-                onClick={() => signIn('google')}
               >
-                Sign In WIth Google
+                <a href={googleLoginUrl}>Sign In With Google</a>
               </Button>
             </CardFooter>
           </CardPreview>

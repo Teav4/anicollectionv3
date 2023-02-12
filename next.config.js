@@ -12,6 +12,8 @@ const nextConfig = {
   env: {
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    POCKET_BASE_URL: process.env.POCKET_BASE_URL,
+    REDIRECT_URL: process.env.REDIRECT_URL,
   }
 }
 

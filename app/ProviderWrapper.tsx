@@ -1,4 +1,4 @@
-import { SessionProvider } from 'next-auth/react'
+import { AuthContextProvider } from '@/contexts/Auth/AuthContextProvider'
 
 type ProviderWrapperProps = {
   children: React.ReactNode
@@ -6,8 +6,8 @@ type ProviderWrapperProps = {
 
 export default function ProviderWrapper({ children }: ProviderWrapperProps) {
   return (
-    <SessionProvider>
+    <AuthContextProvider>
       {children}
-    </SessionProvider>
+    </AuthContextProvider>
   )
 }
